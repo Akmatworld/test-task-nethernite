@@ -1,0 +1,44 @@
+{
+  "name": "test-task-nethernite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.1",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.6.5",
+    "vue": "^2.6.12",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "test-task-nethernite@1.0.0",
+  "bugs": {
+    "url": "https://github.com/Akmatworld/test-task-nethernite/issues"
+  },
+  "homepage": "https://github.com/Akmatworld/test-task-nethernite#readme",
+  "keywords": [],
+  "license": "ISC",
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akmatworld/test-task-nethernite.git"
+  }
+}
