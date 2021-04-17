@@ -13,4 +13,10 @@ export default {
     updatePackageName({commit}, {packageName}) {
         commit(types.UPDATE_PACKAGE_NAME, packageName);
     },
+    updateSearchText({commit}, {searchText}) {
+        commit(types.UPDATE_SEARCH_TEXT, searchText);
+    },
+    updatePaginationData({commit}, {paginationData}) {
+        commit(types.UPDATE_PAGINATION_DATA, paginationData);
+    }
 }

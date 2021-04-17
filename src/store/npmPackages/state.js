@@ -3,4 +3,10 @@ export default {
     totalCount: null,
     isPopup: false,
     packageName: '',
+    searchText: '',
+    paginationData: {
+        index: null,
+        currentPageNumber: null,
+        pages: null
+    },
 }

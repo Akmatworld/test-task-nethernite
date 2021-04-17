@@ -10,5 +10,11 @@ export default {
     },
     getPackageName(state) {
         return state.packageName;
+    },
+    getSearchText(state) {
+        return state.searchText;
+    },
+    getPaginationData(state) {
+        return state.paginationData;
     }
 }

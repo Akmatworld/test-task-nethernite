@@ -4,6 +4,7 @@
         <table class="table">
             <thead class="table-dark">
                 <tr>
+                    <th>№</th>
                     <th>Package Name</th>
                     <th>Scope</th>
                     <th>Version</th>
@@ -12,6 +13,7 @@
             </thead>
             <tbody>
                 <tr class="table__row" v-for="(itemPackage, index) in packageList" :key="index" @click="selectPackage(itemPackage.package.name)">
+                    <td>{{index + 1}}</td>
                     <td>{{itemPackage.package.name}}</td>
                     <td>{{itemPackage.package.scope}}</td>
                     <td>{{itemPackage.package.version}}</td>

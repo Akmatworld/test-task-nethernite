@@ -3,6 +3,8 @@ import {
     UPDATE_TOTAL_COUNT,
     UPDATE_IS_POPUP,
     UPDATE_PACKAGE_NAME,
+    UPDATE_SEARCH_TEXT,
+    UPDATE_PAGINATION_DATA,
 } from './mutation-types';
 
 export default {
@@ -17,5 +19,15 @@ export default {
     },
     [UPDATE_PACKAGE_NAME](state, payload) {
         state.packageName = payload;
+    },
+    [UPDATE_SEARCH_TEXT](state, searchText) {
+        state.searchText = searchText;
+    },
+
+    [UPDATE_PAGINATION_DATA](state, paginationData) {
+        state.paginationData.index = paginationData.index;
+        if (paginationData.pages)
+            state.paginationData.pages = paginationData.pages;
+        state.paginationData.currentPageNumber = paginationData.currentPageNumber;
     },
 }

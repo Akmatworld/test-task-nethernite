@@ -76,6 +76,31 @@
 
                     <div v-for="(item, index) in topFiveFiles" :key="index">{{item.fileName}}: {{item.total}}</div>
                 </div>
+                <!-- chart -->
+
+
+                    <v-card
+                            class="mx-auto text-center"
+                            color="green"
+                            dark
+                            width="100%"
+                    >
+                        <v-card-text>
+                            <v-sheet color="rgba(0, 0, 0, .40)">
+                                <v-sparkline
+                                        :value="chartValue"
+                                        color="rgba(255, 255, 255, .7)"
+                                        height="100"
+                                        padding="24"
+                                        stroke-linecap="round"
+                                >
+                                    <template v-slot:label="item">
+                                        {{ item.value }}
+                                    </template>
+                                </v-sparkline>
+                            </v-sheet>
+                        </v-card-text>
+                    </v-card>
             </div>
         </div>
     </div>
@@ -103,6 +128,7 @@
                 isActiveTopFiveFilesPopup: false,
                 topFiveFilesVersion: '',
                 topFiveVersions: [],
+                chartValue: [],
             }
         },
         computed: {
@@ -129,6 +155,7 @@
             },
             popularPackageText(newValue, oldValue) {
                 this.getPopularPackages();
+                this.getDataForChart();
             },
             packageVersion(newValue, oldValue) {
                 this.getListOfPackageFiles();
@@ -139,6 +166,7 @@
                     this.getBadge();
                     this.getListOfPackageVersion();
                     this.getTopFiveVersions();
+                    this.getDataForChart();
                 }
             }
         },
@@ -210,8 +238,31 @@
                 return status;
             },
             async getDataForChart() {
-                // https://data.jsdelivr.com/v1/package/npm/jquery/stats/date/month
+                let version = this.popularPackageText === 'day' ? 'week': this.popularPackageText;
+                let url = `https://data.jsdelivr.com/v1/package/npm/${this.packageName}/stats/date/${version}`;
+                let result;
+                let response = await fetch(url);
 
+                if (response.ok) {
+                    result = await response.json();
+                    this.chartValue = this.checkAndGetDataForChart(result.dates);
+                }
+            },
+            checkAndGetDataForChart(chartDataObject) {
+                // I don't know which algorithm used here.
+                // I don't have any ideas and then I just render from 0 to 5
+                let arr = [];
+                let properties = Object.keys(chartDataObject);
+
+                for (let i = 0; i < properties.length; i++) {
+                    let prop = properties[i];
+                    if (arr.length <= 5)
+                        arr.push(chartDataObject[prop].total);
+                    else
+                        break;
+                }
+
+                return arr;
             },
             async getTopFiveVersions() {
                 let url = `https://data.jsdelivr.com/v1/package/npm/${this.packageName}/stats`;
@@ -420,7 +471,7 @@
         position: absolute;
         background: $bgc;
         width: 100%;
-        height: 100%;
+        height: 80vh;
 
         &__ul {
             @include ul;
@@ -452,10 +503,15 @@
         }
         &__popup {
             position: relative;
+            z-index: 1;
             width: 140vh;
             background: $popupBgc;
             border-radius: 5px;
             margin: 10px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 80vh;
+            padding: 10px 5px;
         }
         &__content {
             padding: 5px;
