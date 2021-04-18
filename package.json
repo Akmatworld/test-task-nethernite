@@ -6,7 +6,7 @@
   "author": "",
   "scripts": {
     "build": "vue-cli-service build",
-    "dev": "vue-cli-service serve"
+    "start": "vue-cli-service serve"
   },
   "dependencies": {
     "bootstrap": "^4.6.0",
