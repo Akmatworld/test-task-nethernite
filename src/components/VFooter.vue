@@ -25,6 +25,8 @@
         justify-content: center;
         background: $bgc;
         color: $color;
+        height: 40px;
+        margin-top: -40px;
     }
     .profile-block {
         display: inline-flex;
@@ -38,10 +40,11 @@
             margin-right: 20px;
         }
         &__link {
-            text-decoration: $none;
+            text-decoration: underline;
+            color: inherit;
         }
         &__link:hover {
-            color: $color;
+            color: #888;
             text-decoration: $none;
         }
     }

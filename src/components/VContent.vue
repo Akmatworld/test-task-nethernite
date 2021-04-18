@@ -1,19 +1,19 @@
 <template>
     <div class="content">
+<!--        <VPopup/>-->
         <VTable v-show="isShowTable"/>
-        <VPagination v-show="isShowTable"/>
     </div>
 </template>
 
 <script>
-    import VPagination from '@/components/VPagination';
     import VTable from "./VTable";
+    import VPopup from "@/components/VPopup";
 
     export default {
         name: "VContent",
         components: {
-            VPagination,
             VTable,
+            VPopup,
         },
         computed: {
             isShowTable() {
@@ -32,4 +32,9 @@
 </script>
 
 <style scoped lang="scss">
+    .content::after {
+        content: "";
+        display: block;
+        height: 100px;
+    }
 </style>

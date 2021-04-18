@@ -17,7 +17,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.directive('closable', closable)
-
+export let eventEmitter = new Vue();
 Vue.config.productionTip = false
 // I can use here axios
 Vue.prototype.$GET_API_URL = 'https://data.jsdelivr.com/v1';

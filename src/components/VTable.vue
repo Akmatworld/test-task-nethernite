@@ -22,12 +22,18 @@
             </tbody>
         </table>
 <!--        <div style="border: 1px solid red; margin-bottom: 10px;" v-for="(item, index) in packageList" :key="index">{{item}}</div>-->
+        <VPagination/>
     </div>
 </template>
 
 <script>
+    import VPagination from '@/components/VPagination';
+
     export default {
         name: "VTable",
+        components: {
+            VPagination,
+        },
         computed: {
             totalCount() {
                 return this.$store.getters['npmPackages/getTotalCount'];
@@ -57,6 +63,7 @@
                 this.$store.dispatch('npmPackages/updatePackageName', {packageName: packageName});
             },
             selectPackage(packageObject){
+                console.log('hey')
                 this.updatePackageData(packageObject);
                 this.openPopup();
             },
@@ -74,6 +81,7 @@
     $color: #000;
 
     .table-block {
+        padding: 0 10px;
         overflow-x: scroll;
 
         &__total-count {

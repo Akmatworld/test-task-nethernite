@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header__input-block">
-            <input type="text" placeholder="Search packages" v-model="searchTextLocal" @keyup.enter="searchPackageLocal">
+            <input class="header__input form-control" type="text" placeholder="Search packages" v-model="searchTextLocal" @keyup.enter="searchPackageLocal">
             <button class="btn btn-primary" @click="searchPackageLocal">Search</button>
         </div>
     </div>
@@ -31,6 +31,9 @@
     .header {
         display: flex;
         justify-content: center;
-        padding-top: 20px;
+        &__input-block {
+            display: flex;
+            margin-top: 20px;
+        }
     }
 </style>

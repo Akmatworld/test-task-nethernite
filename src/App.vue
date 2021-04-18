@@ -1,19 +1,37 @@
 <template>
   <div id="app">
-      <VPopup/>
-      <VMain/>
+      <div class="wrapper">
+          <VPopup/>
+          <VHeader/>
+          <VContent/>
+      </div>
+      <VFooter/>
   </div>
 </template>
 
 <script>
-    import VMain from '@/components/VMain';
+    import VHeader from "@/components/VHeader";
+    import VContent from "@/components/VContent";
+    import VFooter from "@/components/VFooter";
     import VPopup from "@/components/VPopup";
+    import {eventEmitter} from "./main";
 
     export default {
         name: 'App',
         components: {
-          VMain,
-          VPopup,
+            VContent,
+            VFooter,
+            VPopup,
+            VHeader,
+        },
+        created() {
+            window.addEventListener('keyup', (e) => {
+                if (e.keyCode === 27)
+                    eventEmitter.$emit('closePopup');
+            });
+        },
+        beforeDestroy() {
+            window.removeEventListener('keyup');
         }
     }
 </script>
@@ -29,9 +47,15 @@
         height: 100%;
     }
     #app {
-        height: 100%;
+        position: relative;
         font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+        height: 100%;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .wrapper {
+        min-height: 100%;
     }
 </style>
